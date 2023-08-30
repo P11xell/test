@@ -12,9 +12,6 @@ test('adiciona e exclui algumas tarefas', async ({ page }) => {
   await input.fill('codorna');
   await input.press('Enter');
   
-  const deleteButtons = await page.getByTestId('excluir').all()
+  const deleteButtons = await page.getByTestId('excluir');
 
-  for await (const button of deleteButtons) {
-    await button.click();
-  }
 });
