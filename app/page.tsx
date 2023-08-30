@@ -112,7 +112,7 @@ export default function Home() {
               className={`border p-3 rounded flex justify-between items-center `}
             >
               {editingTaskIndex === index ? (
-                <Input
+                <Input data-testid= "inputEdit"
                   value={editingTaskText}
                   onChange={(e) => setEditingTaskText(e.target.value)}
                 />
@@ -154,7 +154,7 @@ export default function Home() {
                     <Button
                       size="sm"
                       onClick={() => handleDeleteTask(index)}
-                      id="excluir"
+                      data-testid="excluir"
                     >
                       Excluir
                     </Button>

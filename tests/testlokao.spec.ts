@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-test('addi', async ({ page, request }) => {
+test('testa o limite do site', async ({ page, request }) => {
     const task = 'fodastico'
     const input = '//*[@id="react-aria-:R4qqkq:"]'
 

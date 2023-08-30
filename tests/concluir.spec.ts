@@ -1,17 +1,22 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '@playwright/test';
 
-test('addi', async ({ page, request }) => {
-    const task = 'fodastico'
-    const input = '//*[@id="react-aria-:R4qqkq:"]'
+test('testa concluir e "desconcluir" tarefas multiplas', async ({ page }) => {
+  await page.goto('http://localhost:3000/');
+  const input =  page.getByPlaceholder('Coloque sua task aqui')
 
-    await page.goto('http://localhost:3000/')
+  await input.click();
+  await input.fill('caca');
+  await input.press('Enter');
+  await input.fill('aka');
+  await input.press('Enter');
+  await input.fill('pero');
+  await input.press('Enter');
+  await page.getByRole('button', { name: 'Concluir' }).first().click();
+  await page.getByRole('button', { name: 'Concluir' }).first().click();
+  await page.getByRole('button', { name: 'Desfazer' }).first().click();
+  await page.getByRole('button', { name: 'Completed' }).click();
 
-    await page.waitForTimeout(500)
-    await page.type(input, task)
-    await page.press(input, 'Enter')
-    await page.waitForTimeout(1000)
-    await page.click('text= Concluir')
-    await page.click('text= Completed')
-    await page.waitForTimeout(1000)
-    await page.click('text= Active')
-})
+  const lista = page.getByRole('list')
+
+  await expect(lista).toContainText('aka')
+});
